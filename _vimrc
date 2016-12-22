@@ -54,3 +54,5 @@ colorscheme PaperColor
 set guifont=Consolas:h11:cANSI
 
 autocmd vimenter * NERDTree
+
+set number
