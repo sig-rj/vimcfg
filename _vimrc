@@ -1,3 +1,6 @@
+" Force read encoding
+set encoding=utf-8
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -12,17 +15,21 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 
+Plugin 'vim-airline/vim-airline'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'ludovicchabant/vim-gutentags'
+
+Plugin 'flazz/vim-colorschemes'
+
 Plugin 'mattn/emmet-vim'
 
 Plugin 'pangloss/vim-javascript'
 
-" Plugin 'othree/javascript-libraries-syntax.vim'
-
 Plugin 'scrooloose/syntastic'
-
-Plugin 'altercation/vim-colors-solarized'
-
-Plugin 'nlknguyen/papercolor-theme'
 
 Plugin 'scrooloose/nerdcommenter'
 
@@ -47,12 +54,58 @@ set t_Co=256   " This is may or may not needed.
 
 set background=dark
 
-colorscheme PaperColor
+colorscheme hybrid
 
-" colorscheme solarized
-
+" works on windows
 set guifont=Consolas:h11:cANSI
 
-autocmd vimenter * NERDTree
+set lazyredraw        " redraw only when we need to.
+set wildmenu          " visual autocomplete for command menu
+set visualbell " Flash screen instead of sounding a beep
+set backspace=start,eol,indent " Allow backspace in insert mode
+
+set hlsearch " Search highlight
+set ignorecase " Search ignore case
+set nowrap
+set autoindent
+set expandtab " Tab characters entered will be changed to spaces
+set shiftwidth=2 softtabstop=2 " Number of space characters inserted for indentation
+
+set splitbelow " New window is put below the current one
+set splitright " New window is put right of the current one
+
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Remove GUI Bars
+set guioptions-=T
+set guioptions-=t
+set guioptions-=L
+set guioptions-=l
+set guioptions-=m
+set guioptions-=r
+
+autocmd BufWritePre * :%s/\s\+$//ei " Remove all trailing whitespaces at save
+
+" Space as leader
+map <space> <leader>
 
 set number
+
+" Ignore some directories
+let NERDTreeIgnore=['node_modules', 'bower_components', 'tmp', 'vendor']
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|tmp\|vendor\|DS_Store\|git'
+
+"NERDTree auto load
+autocmd vimenter * NERDTree
+
+" Toggle NERDTree
+nmap <silent> <Leader>nt :NERDTreeToggle<CR>
+
+" Toggle Tagbar
+nmap <silent> <Leader>tt :TagbarToggle<CR>
+
+" NERD Commenter: <Leader>c to toggle comments
+map <Leader>c <plug>NERDCommenterToggle
+
