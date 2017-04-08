@@ -61,15 +61,19 @@ set guifont=Consolas:h11:cANSI
 
 set lazyredraw        " redraw only when we need to.
 set wildmenu          " visual autocomplete for command menu
-set visualbell " Flash screen instead of sounding a beep
 set backspace=start,eol,indent " Allow backspace in insert mode
+
+set noeb vb t_vb=     " no bepp and no flash
+if has('autocmd')
+  autocmd GUIEnter * set vb t_vb=
+endif
 
 set hlsearch " Search highlight
 set ignorecase " Search ignore case
 set nowrap
 set autoindent
 set expandtab " Tab characters entered will be changed to spaces
-set shiftwidth=2 softtabstop=2 " Number of space characters inserted for indentation
+set shiftwidth=4 softtabstop=4 " Number of space characters inserted for indentation
 
 set splitbelow " New window is put below the current one
 set splitright " New window is put right of the current one
